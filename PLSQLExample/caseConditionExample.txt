@@ -1,0 +1,21 @@
+DECLARE
+   v_deptno  NUMBER (2):=30; /* Declaring and assigning a value to variable */
+   v_dname   VARCHAR2 (100);
+BEGIN
+   SELECT dname INTO v_dname
+   FROM dept WHERE deptno = v_deptno;
+ /* Giving condition to SQL statement in where clause, here we are checking                                                                                        with the variable v_deptno for which we already assigned value. */
+/* Here we directly specify the condition in when clause using variable name. */
+  CASE
+     WHEN v_deptno = 10 THEN
+        DBMS_OUTPUT.PUT_LINE ('Department Name for a defined variable is : '||v_dname);
+     WHEN v_deptno= 20 THEN
+        DBMS_OUTPUT.PUT_LINE ('Department Name for a defined variable is : '||v_dname);
+     WHEN v_deptno= 30 THEN
+        DBMS_OUTPUT.PUT_LINE ('Department Name for a defined variable is : '||v_dname);
+     WHEN v_deptno= 40 THEN
+        DBMS_OUTPUT.PUT_LINE ('Department Name for a defined variable is : '||v_dname);
+     ELSE
+        DBMS_OUTPUT.PUT_LINE ('Sorry! No Such records exists');
+  END CASE;
+END;

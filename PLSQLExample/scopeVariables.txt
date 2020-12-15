@@ -1,0 +1,14 @@
+DECLARE
+     num1 NUMBER;
+     num2 NUMBER;
+BEGIN                                                                 
+      num1:= 100;
+      num2:= 200;
+           DECLARE                                                    
+                 sum NUMBER;
+           BEGIN
+                 sum:= num1 + num2;
+           END;                                                       
+           /*Access child variable v_sum in the parent block*/
+           DBMS_OUTPUT.PUT_LINE(sum);
+END; 

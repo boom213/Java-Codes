@@ -1,0 +1,16 @@
+DECLARE
+   v_deptno NUMBER (2):=20;
+   v_dname VARCHAR2 (50);
+BEGIN
+  SELECT dname INTO v_dname
+  FROM dept WHERE deptno = v_deptno;
+/* Here we try to specify the case for a variable v_deptno. */
+CASE V_deptno
+  WHEN 10 THEN
+       DBMS_OUTPUT.PUT_LINE ('The Department Name of Deptno is: '||v_dname);
+  WHEN 20 THEN
+       DBMS_OUTPUT.PUT_LINE ('The Department Name of Deptno is: '||v_dname);  
+  ELSE
+      DBMS_OUTPUT.PUT_LINE ('Sorry ! No Such Records Exists');
+  END CASE;
+ END;

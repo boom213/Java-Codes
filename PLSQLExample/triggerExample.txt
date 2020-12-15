@@ -1,0 +1,16 @@
+//tigger is fired when we insert ename in lower letter it stores in upper letter
+CREATE OR REPLACE TRIGGER up_ename
+   BEFORE INSERT   ON emp    FOR EACH ROW
+BEGIN
+   :NEW.ename := UPPER (:NEW.ename);
+END;
+
+//tigger example for update
+
+CREATE OR REPLACE TRIGGER up_sal BEFORE UPDATE ON emp FOR EACH ROW
+BEGIN
+    IF :NEW.sal<:OLD.sal THEN
+        RAISE_APPLICATION_ERROR(-20000,'updating salary must greater than existing salary');
+    END IF;
+END;
+

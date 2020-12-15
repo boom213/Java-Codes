@@ -1,0 +1,70 @@
+DECLARE
+   v_dept  NUMBER (10);
+   v_ename  VARCHAR2 (10);
+BEGIN
+   v_dept := 10;
+   SELECT ename
+   INTO v_ename
+   FROM emp
+   WHERE deptno = v_dept;
+EXCEPTION
+    WHEN TOO_MANY_ROWS
+   THEN
+     DBMS_OUTPUT.put_line ('There are too many rows in this deptno-->'|| v_dept);
+END;
+
+//another example
+DEFINE p_deptno = 10
+DECLARE
+  e_emps_remaining EXCEPTION;
+  PRAGMA EXCEPTION_INIT  (e_emps_remaining, -2292);
+BEGIN
+  DELETE FROM dept  WHERE  deptno = &p_deptno;
+  COMMIT;
+EXCEPTION
+  WHEN e_emps_remaining   THEN
+   DBMS_OUTPUT.PUT_LINE ('Cannot remove dept ' ||
+   TO_CHAR(&p_deptno) || '.  Employees exist. ');
+END;
+//another example
+
+DECLARE
+   c_id emp.empno%type := 34;
+   c_name  emp.ename%type;
+   c_job emp.job%type;
+BEGIN
+   SELECT  ename, job INTO  c_name, c_job
+   FROM emp WHERE empno = c_id;
+   DBMS_OUTPUT.PUT_LINE ('Name: '||  c_name);
+   DBMS_OUTPUT.PUT_LINE ('Job: ' || c_job);
+  EXCEPTION
+   WHEN no_data_found THEN
+      dbms_output.put_line('No such customer!');
+   WHEN others THEN
+      dbms_output.put_line('Error!');
+END;
+
+//userdefined Exception
+
+DECLARE
+   v_empno  emp.empno%TYPE ;
+   v_ename  emp.ename%TYPE:='KING';
+   v_sal  emp.sal%TYPE;  
+   sal_missing  EXCEPTION;   /* user defined exception. We are going to use it in Exception block*/
+BEGIN
+   SELECT ename, sal  INTO v_ename, v_sal  FROM emp   WHERE ename=v_ename ;
+    UPDATE emp SET sal = v_sal WHERE ename = v_ename;  
+   IF v_sal IS NULL
+   THEN
+   RAISE sal_missing;
+   end if;
+      DBMS_OUTPUT.put_line (v_empno|| '  '|| v_ename|| '  '|| v_sal );
+EXCEPTION
+   WHEN NO_DATA_FOUND
+      THEN
+      DBMS_OUTPUT.put_line ('No such employee exists with-->' || v_ename );  
+   WHEN sal_missing
+      THEN
+      DBMS_OUTPUT.put_line ('salary is null-providing basic pay');
+        UPDATE emp  SET sal = 1255  WHERE ename = v_ename;  
+END;

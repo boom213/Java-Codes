@@ -1,0 +1,22 @@
+DECLARE
+   v_deptno   NUMBER (2) ;
+   v_name     VARCHAR2 (100) := 'SALES' ;
+BEGIN
+   SELECT deptno
+   INTO  v_deptno
+   FROM   dept
+   WHERE   dname = v_name;
+   DBMS_OUTPUT.PUT_LINE ('Department Number fetched is - '||v_deptno);
+   IF (v_deptno = 10)
+   THEN
+        DBMS_OUTPUT.PUT_LINE ('We are in Department Number 10');
+      ELSIF (v_deptno = 20)
+      THEN
+          DBMS_OUTPUT.PUT_LINE ('We are in Department Number 20');
+        ELSIF (v_deptno = 30)
+        THEN
+            DBMS_OUTPUT.PUT_LINE ('We are in Department Number 30');        
+         ELSE
+             DBMS_OUTPUT.PUT_LINE ('Sorry! No such department exists');
+   END IF;
+END;

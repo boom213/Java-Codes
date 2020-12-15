@@ -1,0 +1,15 @@
+DECLARE
+v_num number (10):=0;
+BEGIN
+   DBMS_OUTPUT.put_line ('the numbers are--');
+
+   LOOP 
+
+   v_num:=v_num+1;   
+   DBMS_OUTPUT.PUT_LINE(v_num); 
+
+   EXIT WHEN (v_num=10);
+
+
+   END LOOP;
+END;

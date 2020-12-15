@@ -1,0 +1,31 @@
+DECLARE
+  v_deptno   NUMBER (2) ;
+  v_name     VARCHAR2 (100) := 'SALES' ;
+BEGIN
+   SELECT deptno
+   INTO   v_deptno
+   FROM   dept
+  WHERE   dname = v_name;
+
+  DBMS_OUTPUT.PUT_LINE ('Department Number fetched is - '||v_deptno);
+
+  IF (v_deptno > 20 )     THEN
+      DBMS_OUTPUT.PUT_LINE ('Department Number is greater than 20');
+      IF (v_deptno = 30) THEN
+           DBMS_OUTPUT.PUT_LINE ('We are in Department Number 30');
+      ELSE
+            IF (v_deptno = 40) THEN
+                 DBMS_OUTPUT.PUT_LINE ('We are in Department Number 40');
+            END IF;
+      END IF;
+  ELSE
+      DBMS_OUTPUT.PUT_LINE ('Department Number is less than or equal to 20');
+      IF (v_deptno = 20) THEN
+           DBMS_OUTPUT.PUT_LINE ('We are in Department Number 20');
+      ELSE
+            IF (v_deptno = 10) THEN
+                 DBMS_OUTPUT.PUT_LINE ('We are in Department Number 10');
+            END IF;
+      END IF;
+  END IF;
+END;

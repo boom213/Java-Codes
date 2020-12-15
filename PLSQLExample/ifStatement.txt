@@ -1,0 +1,9 @@
+DECLARE
+       a  NUMBER := 2;
+       b  NUMBER := 2;
+BEGIN
+      IF a=b THEN
+             DBMS_OUTPUT.PUT_LINE ('We are in IF Block');
+      END IF;
+DBMS_OUTPUT.PUT_LINE ('Outside IF Statement');
+END;

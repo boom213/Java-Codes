@@ -1,0 +1,52 @@
+//it's an implicit cursor which updates the records which satisfies the conditions. SQL%FOUND
+
+DECLARE
+  v_dept  VARCHAR2(20) := 'SALES';
+BEGIN
+ 
+   UPDATE emp SET sal = sal + sal * .02
+      WHERE deptno = (SELECT deptno FROM DEPT WHERE dname=v_dept);
+
+   IF SQL%FOUND
+   THEN
+   DBMS_OUTPUT.put_line ( SQL%ROWCOUNT|| '  '|| 'employee(s) are updated successfully');
+   ELSE
+   DBMS_OUTPUT.put_line ('no such Department Name exists with ->' || v_dept);
+   COMMIT; 
+   END IF;
+END;
+
+//implicit cursor not found
+
+DECLARE
+  v_dept  VARCHAR2(20) := 'MARKETING';
+BEGIN
+UPDATE emp
+    SET sal = sal + sal * .02
+    WHERE deptno = (SELECT deptno FROM DEPT WHERE dname=v_dept);
+
+   IF SQL%FOUND
+   THEN
+
+   DBMS_OUTPUT.put_line ( SQL%ROWCOUNT|| '  '|| 'employee(s) are updated successfully');
+   ELSE
+   DBMS_OUTPUT.put_line ('no such Department Name exists with ->' || v_dept);
+   COMMIT;  
+   END IF;
+END;
+
+//implicit cursor rowcount
+
+Declare
+   v_dept VARCHAR2(20):='RESEARCH';
+Begin
+
+DELETE FROM emp WHERE deptno= (SELECT deptno FROM DEPT WHERE dname=v_dept);
+
+  If SQL%ROWCOUNT>=3 THEN
+         DBMS_OUTPUT.PUT_LINE ('Cannot delete 3 or more than 3 employees at a time.');
+         ELSE
+         DBMS_OUTPUT.put_line(SQL%rowcount||'  '||'employees are deleted');
+        COMMIT; 
+  END IF;
+END;

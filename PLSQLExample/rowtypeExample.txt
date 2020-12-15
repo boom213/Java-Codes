@@ -1,0 +1,16 @@
+//record type data type
+
+DECLARE
+    emp_rec emp%ROWTYPE;
+
+BEGIN
+
+    emp_rec.ename:= 'KING'; 
+
+    SELECT empno, ename, sal,job INTO emp_rec.empno, emp_rec.ename, emp_rec.sal, emp_rec.job
+    FROM emp WHERE ename = emp_rec.ename;
+    
+    DBMS_OUTPUT.put_line ( emp_rec.empno|| ' '||emp_rec.ename|| ' '|| emp_rec.sal||' '|| emp_rec.job );
+END;
+
+//select * into emp_rec from emp where ename = emp_rec.ename;

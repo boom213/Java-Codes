@@ -1,0 +1,47 @@
+CREATE OR REPLACE FUNCTION emp_deptno RETURN NUMBER    
+IS
+   v_count   NUMBER;
+BEGIN
+     SELECT COUNT (*)  INTO v_count   FROM emp  WHERE deptno = 10;
+   RETURN (v_count);      
+EXCEPTION
+   WHEN OTHERS            
+   THEN
+   RETURN 0;
+END emp_deptno_count;
+
+//execute the function
+
+DECLARE
+   result   NUMBER;
+BEGIN
+   result : = emp_deptno;
+   DBMS_OUTPUT.put_line ('Total employees->' ||result);
+END;
+
+//function with in parameter
+
+CREATE OR REPLACE FUNCTION get_bal(emp_no IN emp.empno%TYPE) 
+   RETURN NUMBER 
+   IS emp_sal emp.sal%TYPE;
+BEGIN 
+   SELECT sal INTO emp_sal  FROM emp  WHERE empno = emp_no; 
+   RETURN(emp_sal); 
+ END;
+/
+declare
+  employeesal emp.sal%TYPE;
+  begin
+  employeesal := get_bal(7934);
+  dbms_output.put_line(employeesal);
+  end;
+  /
+
+//functions in sql program
+CREATE OR REPLACE FUNCTION tax(p_value IN NUMBER)
+ RETURN NUMBER IS
+BEGIN
+   RETURN (p_value * 0.08);
+END tax;
+
+SELECT empno, ename, sal, tax(sal) FROM emp WHERE  deptno = 10;

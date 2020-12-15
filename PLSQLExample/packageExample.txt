@@ -1,0 +1,28 @@
+//package specification
+
+CREATE PACKAGE emp_sal AS
+   PROCEDURE find_sal(c_id emp.empno%type);
+END emp_sal;
+
+//package body
+
+CREATE OR REPLACE PACKAGE BODY emp_sal AS
+   PROCEDURE find_sal(c_id emp.empno%TYPE) IS
+   c_sal emp.sal%TYPE;
+   BEGIN
+      SELECT sal INTO c_sal
+      FROM emp
+      WHERE empno = c_id;
+      dbms_output.put_line('Salary: '|| c_sal);
+   END find_sal;
+END emp_sal;
+
+//execution of package
+
+DECLARE
+  code emp.empno%TYPE := &e_id;
+BEGIN
+ emp_sal.find_sal(code);
+END;
+
+EXECUTE emp_sal.find_sal(7900);

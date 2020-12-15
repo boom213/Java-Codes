@@ -1,0 +1,19 @@
+BEGIN
+   DBMS_OUTPUT.put_line (' The Numbers Are');
+   DBMS_OUTPUT.put_line ('-------------------------');
+   FOR v_num IN 1..10
+   LOOP
+      DBMS_OUTPUT.put_line (v_num);
+   END LOOP;
+END;
+
+reverse order
+
+BEGIN
+   DBMS_OUTPUT.put_line (' The Numbers Are');
+   DBMS_OUTPUT.put_line ('-------------------------');
+   FOR v_num IN REVERSE 1..10
+   LOOP
+      DBMS_OUTPUT.put_line (v_num);
+   END LOOP;
+END;

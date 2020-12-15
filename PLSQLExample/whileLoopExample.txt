@@ -1,0 +1,14 @@
+DECLARE
+    v_num number (10):=0;
+
+BEGIN
+   
+    WHILE (v_num <=10) loop
+
+    DBMS_OUTPUT.put_line (v_num);
+
+    v_num:= v_num +1;
+
+    END LOOP;
+
+END;

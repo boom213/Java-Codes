@@ -1,0 +1,17 @@
+DECLARE
+   c_id emp.empno%type;
+   c_name emp.ename%type;
+   c_addr emp.job%type;
+
+   CURSOR c_emp is
+      SELECT empno,ename,job FROM emp;
+BEGIN
+   OPEN c_emp;
+   LOOP
+      FETCH c_emp into c_id, c_name, c_addr;
+      dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr);
+      EXIT WHEN c_emp%notfound;
+   END LOOP;
+   CLOSE c_emp;
+END;
+/

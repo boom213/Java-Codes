@@ -1,0 +1,19 @@
+CREATE OR REPLACE PROCEDURE find_emp (p_empno IN emp.empno%TYPE)
+IS     
+   v_ename    emp.ename%TYPE;
+   v_sal           emp.sal%TYPE;
+   v_deptno   emp.deptno%TYPE;
+
+BEGIN
+   SELECT ename, sal, deptno INTO v_ename, v_sal, v_deptno   FROM emp WHERE empno = p_empno;   
+
+   DBMS_OUTPUT.PUT_LINE (v_ename || ' ' || v_sal || ' ' || v_deptno);  
+EXCEPTION
+   WHEN NO_DATA_FOUND
+   THEN
+      DBMS_OUTPUT.PUT_LINE ('No records exists such empno');
+
+END find_emp;
+
+//to execute this we use 
+execute find_emp(7839);

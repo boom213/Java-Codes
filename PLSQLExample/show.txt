@@ -1,0 +1,44 @@
+with out declaretion
+
+BEGIN
+     DBMS_OUTPUT.PUT_LINE('Welcome to - PL/SQL Tutorial');
+END;
+
+
+with declaretion
+
+ DECLARE
+     myvariable  varchar2(100);
+BEGIN
+     myvariable := 'PL/SQL Tutorial';
+     DBMS_OUTPUT.PUT_LINE('Welcome to - '||myvariable );
+END;
+
+with exception
+
+  DECLARE
+     myvariable  varchar2(100);
+BEGIN
+     myvariable := 'PL/SQL Tutorail';
+     DBMS_OUTPUT.PUT_LINE('Welcome to - '||myvariable );
+EXCEPTION
+  WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Exception Raised');
+END;
+
+Nested PL/SQL example
+<<Paret Block>>
+DECLARE
+      Parentval VARCHAR2(20);
+BEGIN
+      Parentval := 'First Block';
+      dbms_output.put_line(Parentval);
+      <<Child Block>>
+      DECLARE
+           childval VARCHAR2(20);
+      BEGIN
+           childval := 'Second Block';
+           DBMS_OUTPUT.PUT_LINE(childval);
+      END;
+END;
+/

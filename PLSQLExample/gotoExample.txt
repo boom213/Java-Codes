@@ -1,0 +1,16 @@
+BEGIN
+    FOR v_num IN 1..5
+    LOOP
+    DBMS_OUTPUT.put_line (v_num);
+   
+      IF v_num = 3
+        THEN
+           GOTO exit_loop;
+           
+      END IF;
+   END LOOP;
+   <<exit_loop>>
+
+   DBMS_OUTPUT.put_line (' End of program');
+
+END;

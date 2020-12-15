@@ -1,0 +1,14 @@
+CREATE OR REPLACE PROCEDURE emp_info IS
+
+   CURSOR emp_cur   IS SELECT empno, sal, deptno FROM emp;
+BEGIN
+   DBMS_OUTPUT.PUT_LINE ('EMPNO ENAME   SAL');
+   DBMS_OUTPUT.PUT_LINE ('-------------------------------');
+
+   FOR emp_rec IN emp_cur   LOOP
+
+      DBMS_OUTPUT.PUT_LINE (emp_rec.empno|| '   '|| emp_rec.sal|| '   '|| emp_rec.sal);
+
+   END LOOP;
+
+END emp_info;

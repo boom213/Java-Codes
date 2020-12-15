@@ -1,0 +1,10 @@
+DECLARE
+       a  NUMBER := 2;
+       b  NUMBER := 3;
+BEGIN
+      IF a=b THEN
+             DBMS_OUTPUT.PUT_LINE ('We are in IF Block');
+      ELSE
+             DBMS_OUTPUT.PUT_LINE ('We are in ELSE Block');
+      END IF;
+END;
